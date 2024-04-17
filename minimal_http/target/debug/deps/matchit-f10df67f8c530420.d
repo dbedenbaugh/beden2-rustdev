@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libmatchit-f10df67f8c530420.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\params.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\router.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\tree.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libmatchit-f10df67f8c530420.rlib: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\params.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\router.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\tree.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\matchit-f10df67f8c530420.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\params.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\router.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\tree.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\error.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\params.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\router.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\matchit-0.7.3\src\tree.rs:

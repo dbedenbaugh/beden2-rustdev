@@ -1,0 +1,5 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libminimal_http-d6f9ea72bdd81848.rmeta: src\main.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\minimal_http-d6f9ea72bdd81848.d: src\main.rs
+
+src\main.rs:
