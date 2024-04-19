@@ -1,0 +1,1 @@
+fn() -> impl Future<Output = Result<impl FromRequest<{type error}, {type error}> + Send, axum::Error>> {get_questions}

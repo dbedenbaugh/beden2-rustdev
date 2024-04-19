@@ -1,0 +1,1 @@
+fn() -> impl Future<Output = Result<Json<Question>, axum::Error>> {get_questions}
