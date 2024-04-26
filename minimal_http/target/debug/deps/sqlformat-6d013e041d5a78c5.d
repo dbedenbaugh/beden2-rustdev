@@ -1,0 +1,10 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libsqlformat-6d013e041d5a78c5.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\formatter.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\indentation.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\inline_block.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\params.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\tokenizer.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\sqlformat-6d013e041d5a78c5.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\formatter.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\indentation.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\inline_block.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\params.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\tokenizer.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\formatter.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\indentation.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\inline_block.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\params.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\sqlformat-0.2.3\src\tokenizer.rs:

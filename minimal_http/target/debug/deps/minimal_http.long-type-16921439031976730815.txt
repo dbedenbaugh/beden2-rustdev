@@ -1,0 +1,1 @@
+fn(hyper::Request<Body>) -> impl Future<Output = Result<Response<Body>, hyper::Error>> {set_hr}

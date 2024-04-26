@@ -1,0 +1,10 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libpem_rfc7468-ae6c8480d0a66b85.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\decoder.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\encoder.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\grammar.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\../README.md
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\pem_rfc7468-ae6c8480d0a66b85.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\decoder.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\encoder.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\grammar.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\../README.md
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\decoder.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\encoder.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\error.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\grammar.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\pem-rfc7468-0.7.0\src\../README.md:

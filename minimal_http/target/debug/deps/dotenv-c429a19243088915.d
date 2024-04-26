@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libdotenv-c429a19243088915.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\parse.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\errors.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\iter.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\find.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\libdotenv-c429a19243088915.rlib: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\parse.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\errors.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\iter.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\find.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\minimal_http\target\debug\deps\dotenv-c429a19243088915.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\parse.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\errors.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\iter.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\find.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\parse.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\errors.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\iter.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\dotenv-0.15.0\src\find.rs:
