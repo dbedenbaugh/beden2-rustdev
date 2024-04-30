@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\librand_core-d2d071316d24d882.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\block.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\impls.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\le.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\librand_core-d2d071316d24d882.rlib: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\block.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\impls.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\le.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\rand_core-d2d071316d24d882.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\block.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\impls.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\le.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\error.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\block.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\impls.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\rand_core-0.4.2\src\le.rs:

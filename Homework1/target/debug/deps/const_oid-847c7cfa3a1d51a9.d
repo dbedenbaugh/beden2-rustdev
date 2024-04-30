@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\libconst_oid-847c7cfa3a1d51a9.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\checked.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\arcs.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\encoder.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\parser.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\../README.md
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\const_oid-847c7cfa3a1d51a9.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\checked.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\arcs.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\encoder.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\error.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\parser.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\../README.md
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\checked.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\arcs.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\encoder.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\error.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\parser.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\const-oid-0.9.6\src\../README.md:

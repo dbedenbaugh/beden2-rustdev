@@ -12,7 +12,8 @@ use std::io::{Error, ErrorKind};
 use std::str::FromStr;
 
 use serde::{Serialize, Deserialize};
-use hyper::body::to_bytes;
+use serde_json::to_string;
+//use hyper::body::to_bytes;
 
 //use tower_http::{trace::TraceLayer};
 use tower_http::cors::{Any, CorsLayer, AllowMethods};
@@ -75,16 +76,18 @@ impl Store {
     
     fn load()-> Self {
 
-        let file_contents = std::fs::read_to_string("questions.json").unwrap_or_else(|_| "{}".to_string());
+        let file_contents = std::fs::read_to_string("src/questions.json").unwrap_or_else(|_| "{}".to_string());
         let questions: HashMap<QuestionId, Question> = serde_json::from_str(&file_contents).expect("Failed to parse JSON.");
         Store { questions }
     }
     fn save(&self) {
         let json = serde_json::to_string(&self.questions).expect("Failed to serialize questions.");
-        std::fs::write("questions.json", json).expect("Failed to write to file.");
+        std::fs::write("src/questions.json", json).expect("Failed to write to file.");
     }
 
     fn add_question(&mut self, question: Question)  {
+        println!("{:?} {:?}", question.id, question);
+        println!("{:?}", self.questions);
         self.questions.insert(question.id.clone(), question);
         self.save();
     }
@@ -129,20 +132,20 @@ impl FromStr for QuestionId {
 ///GET Handler
 
 
-async fn get_hr() -> impl IntoResponse{
+async fn get_hr(
+    Extension(store): Extension<Arc<Mutex<Store>>>,
+) -> impl IntoResponse{
+    let mut store = store.lock().await;
 
-    let file = include_str!("questions.json");
-    println!("Contents of questions.json:");
-    println!("{}", file);
+    println!("get_hr called");
 
-    //let questions = serde_json::from_str(file).expect("Can't read questions.json");
-    match serde_json::from_str::<Vec<Question>>(file){
+    match to_string(&store.questions){
+
         Ok(questions) => {
-            let json_response = serde_json::to_string(&questions).unwrap();
             Response::builder()
                 .status(StatusCode::OK)
                 .header("content-type", "application/json")
-                .body(json_response)
+                .body(questions)
                 .unwrap()
         }
         Err(err) => {
@@ -159,22 +162,28 @@ async fn get_hr() -> impl IntoResponse{
 
 ///POST Handler
 
-
+ 
 async fn post_hr(
     Extension(store): Extension<Arc<Mutex<Store>>>,
     //Json(question): Json<Question>
 )   -> impl IntoResponse {
+    println!("post_hr called");
     let mut store = store.lock().await;
     let question = Question::new(
-        QuestionId::from_str("1").expect("No id provided"),
-        "First Question".to_string(),
-        "Content of question".to_string(),
+        QuestionId::from_str("2").expect("No id provided"),
+        "4nd Question".to_string(),
+        "content, question3".to_string(),
             Some(vec!("faq".to_string())),  //encapsulate and create a vector
         );
     store.add_question(question);
-    (StatusCode::CREATED, "Question added successfully.")
-
+    //(StatusCode::CREATED, "Question added successfully.")
+    Response::builder()
+                .status(StatusCode::OK)
+                .header("content-type", "application/json")
+                .body("Created successfully".to_string())
+                .unwrap()    
 }
+
 
 
 ///PUT Handler
@@ -183,6 +192,8 @@ async fn update_hr(
     //Json(question): Json<Question>
     Path(question_id): Path<QuestionId>,
 ) -> impl IntoResponse {
+    println!("update_hr called");
+
     let mut store = store.lock().await;
     let question = Question::new(
         QuestionId::from_str("1").expect("No id provided"),
@@ -216,35 +227,42 @@ async fn delete_hr(
 async fn main() {
 
 
-    let store = Store::new();
-    //let store_filter = warp::any().map(move || store.clone()
-    let store_filter = axum::Extension(Arc::new(store.clone()));
+    let store = Store::load();
+    let store_filter = Arc::new(Mutex::new(store));
 
 
     let app = Router::new()
-    .route("/questions", get(get_hr).post(post_hr))
+
+    .route("/questionspost", get(post_hr).post(post_hr))
+    .route("/questions", get(get_hr))
     .route("/questionsup", put(update_hr).delete(delete_hr))
     .layer(
         ServiceBuilder::new()
             .layer(CorsLayer::new().allow_origin(Any).allow_methods(Any).allow_headers(Any))
-            .layer(Extension(Arc::new(Mutex::new(Store::load()))))
+            .layer(Extension(store_filter.clone()))
     );
 
 
 
-    //let listener = TcpListener::bind("127.0.0.1:3000").await.unwrap();
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Server listening on http://{}", addr);
 
-    //axum::serve(listener, app_with_cors)
+
+
+
+    if let Err(e) = axum::Server::bind(&addr)
+    .serve(app.into_make_service())
+    .await{
+        eprintln!("failed to start server: {}", e);
+    }
+}
+
+    /* 
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
         .unwrap();
-
-}
-
-
+    */
 
 /* 
 
@@ -366,4 +384,30 @@ async fn set_hr(req: Request<Body>) -> Response<Body> {
         }
     }
 }
+*/
+
+
+/*
+
+    let question = Question::new(
+        QuestionId::from_str("4").expect("No id provided"),
+        "4nd Question".to_string(),
+        "content, question4".to_string(),
+            Some(vec!("new".to_string())),  //encapsulate and create a vector
+        );
+
+    let question = Question::new(
+        QuestionId::from_str("2").expect("No id provided"),
+        "4nd Question".to_string(),
+        "content, question3".to_string(),
+            Some(vec!("faq".to_string())),  //encapsulate and create a vector
+        );
+
+        let question = Question::new(
+        QuestionId::from_str("3").expect("No id provided"),
+        "3nd Question".to_string(),
+        "content, question3".to_string(),
+            Some(vec!("new".to_string())),  //encapsulate and create a vector
+        );
+
 */
