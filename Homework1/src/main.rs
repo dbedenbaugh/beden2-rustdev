@@ -1,9 +1,13 @@
 //minimal CRUD rest API using axum
 // programmer: Devon Bedenbaugh
 // help credits go to chatgpt, rustdocs, axum docs, bastian gruber rust textbook, 
+#![warn(
+    clippy::all,
+)]
+mod questions;
+mod error;
 
-
-use axum::{ routing::{get, post, put}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::Extension, response::Json, response::IntoResponse, extract::{path::Path,  FromRequest}};
+use axum::{ routing::{get, post, put, delete}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::Extension, response::Json, response::IntoResponse, extract::{path::Path,  FromRequest}};
 use tokio::{net::TcpListener, sync::Mutex};
 use std::{net::SocketAddr, sync::Arc};
 
@@ -22,110 +26,11 @@ use std::collections::HashMap;
 //CRUD, create, read, update, delete
 use core::mem::size_of;
 
+use crate::questions::{Question, QuestionId, Store, Answer, AnswerId};
+
 #[derive(Debug)]
 struct InvalidId;
 
-#[derive(Deserialize, Serialize, Debug, Clone)] //use the derive macro to implement the debug trait
-struct Question {
-    id: QuestionId,
-    title: String,
-    content: String,
-    tags: Option<Vec<String>>,
-}
-
-#[derive(Deserialize, Serialize, Debug, Clone, PartialEq, Eq, Hash)] //use the derive macro to implement the debug trait0
-struct QuestionId(String);
- 
-impl Question {
-    fn new(
-        id: QuestionId, 
-        title: String, 
-        content: String, 
-        tags: Option<Vec<String>>
-     ) -> Self {
-        Question {
-            id,
-            title,
-            content,
-            tags,
-        }
-    }
-}
-
-
-///Structure for loading and saving database.
-/// #handles basic CRUD components
-/// 
-#[derive(Clone)]
-struct Store{
-    questions: HashMap<QuestionId, Question>,
-}
-
-impl Store {
-
-    fn init()-> HashMap<QuestionId, Question>{
-        let file = include_str!("questions.json");
-        serde_json::from_str(file).expect("Can't read questions.json")
-    }
-
-    fn new() -> Self {
-        Store {
-            questions: HashMap::new(),
-        }
-    }
-    
-    fn load()-> Self {
-
-        let file_contents = std::fs::read_to_string("src/questions.json").unwrap_or_else(|_| "{}".to_string());
-        let questions: HashMap<QuestionId, Question> = serde_json::from_str(&file_contents).expect("Failed to parse JSON.");
-        Store { questions }
-    }
-    fn save(&self) {
-        let json = serde_json::to_string(&self.questions).expect("Failed to serialize questions.");
-        std::fs::write("src/questions.json", json).expect("Failed to write to file.");
-    }
-
-    fn add_question(&mut self, question: Question)  {
-        println!("{:?} {:?}", question.id, question);
-        println!("{:?}", self.questions);
-        self.questions.insert(question.id.clone(), question);
-        self.save();
-    }
-
-    fn update_question(&mut self, question_id: &QuestionId, new_question: Question) -> Result<(), String> {
-        if self.questions.contains_key(question_id) {
-            self.questions.insert(question_id.clone(), new_question);
-            self.save();
-            Ok(())
-        } else {
-            Err("Question not found".to_string())
-        }
-    }
-
-    fn delete_question(&mut self, question_id: &QuestionId) -> Result<(), String> {
-        if self.questions.remove(question_id).is_some() {
-            self.save();
-            Ok(())
-        } else {
-            Err("Question not found".to_string())
-        }
-    }
-
-}
-
-
-impl FromStr for QuestionId {
-    type Err = std::io::Error;
- 
-    fn from_str(id: &str) -> Result<Self, Self::Err> {
-        match id.is_empty() {
-            false => Ok(QuestionId(id.to_string())),
-            true => Err(
-              Error::new(ErrorKind::InvalidInput, "No id provided")
-            ),
-        }
-    }
-}
 
 
 
@@ -139,7 +44,7 @@ async fn get_hr(
 
     println!("get_hr called");
 
-    match to_string(&store.questions){
+    match store.get_questions_json().await {
 
         Ok(questions) => {
             Response::builder()
@@ -169,20 +74,33 @@ async fn post_hr(
 )   -> impl IntoResponse {
     println!("post_hr called");
     let mut store = store.lock().await;
-    let question = Question::new(
+    let new_question = Question::new(
         QuestionId::from_str("2").expect("No id provided"),
         "4nd Question".to_string(),
         "content, question3".to_string(),
             Some(vec!("faq".to_string())),  //encapsulate and create a vector
         );
-    store.add_question(question);
+    match store.add_question(new_question).await{
     //(StatusCode::CREATED, "Question added successfully.")
-    Response::builder()
-                .status(StatusCode::OK)
-                .header("content-type", "application/json")
-                .body("Created successfully".to_string())
-                .unwrap()    
+        Ok(_) => {
+        Response::builder()
+                    .status(StatusCode::OK)
+                    .header("content-type", "application/json")
+                    .body("Created successfully".to_string())
+                    .unwrap()   
+            }
+        Err(err) => {
+            eprintln!("Error posting JSON: ");
+
+            let error_response = "Error creating and submitting question".to_string();
+            Response::builder()
+                .status(StatusCode::INTERNAL_SERVER_ERROR)
+                .body(error_response)
+                .unwrap()
+            }
+        }
 }
+
 
 
 
@@ -201,10 +119,19 @@ async fn update_hr(
         "Content of question".to_string(),
             Some(vec!("faq".to_string())),  //encapsulate and create a vector
         );
-    match store.update_question(&question_id, question) {
-        Ok(_) =>(StatusCode::OK, "Question updated successfully.".to_string()),
-        Err(error) => (StatusCode::NOT_FOUND, error.to_string()),
 
+
+    match store.update_question(&question_id, question).await {
+        Ok(_) => Response::builder()
+                        .status(StatusCode::OK)
+                        .header("content-type", "application/json")
+                        .body("Question updated successfully.".to_string())
+                        .unwrap(),
+        Err(error) => Response::builder()
+                        .status(StatusCode::NOT_FOUND)
+                        .header("content-type", "application/json")
+                        .body(error.to_string())
+                        .unwrap(),
     }
 
 
@@ -217,11 +144,38 @@ async fn delete_hr(
     Path(question_id): Path<QuestionId>
 ) -> impl IntoResponse {
     let mut store = store.lock().await;
-    match store.delete_question(&question_id) {
+    match store.delete_question(&question_id).await {
         Ok(_) => (StatusCode::OK, "Question deleted successfully.".to_string()),
         Err(error) => (StatusCode::NOT_FOUND, error),
     }
 }
+
+async fn answer_hr(
+    Extension(store): Extension<Arc<Mutex<Store>>>,
+    Path(answer_id): Path<AnswerId>,
+    
+
+) -> impl IntoResponse{
+    let mut store = store.lock().await;
+
+    let answer= Answer::new(
+        AnswerId("1".to_string()),
+        "test".to_string(),
+        //params.get("content").unwrap().to_string(),
+        QuestionId("101".to_string()),
+    );
+
+
+    match store.add_answer(answer).await{
+        Ok(response) => {
+            (StatusCode::OK, "answer added successfully.".to_string())
+        }
+        Err(e) => {
+            (StatusCode::NOT_FOUND, e)        }
+    }
+
+}
+
 
 #[tokio::main]
 async fn main() {
@@ -235,7 +189,11 @@ async fn main() {
 
     .route("/questionspost", get(post_hr).post(post_hr))
     .route("/questions", get(get_hr))
-    .route("/questionsup", put(update_hr).delete(delete_hr))
+    .route("/questions/:questionId", put(update_hr))
+    .route("/questions/:questionId", delete(delete_hr))
+    .route("/answers", post(answer_hr))
+
+    
     .layer(
         ServiceBuilder::new()
             .layer(CorsLayer::new().allow_origin(Any).allow_methods(Any).allow_headers(Any))
@@ -246,8 +204,6 @@ async fn main() {
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Server listening on http://{}", addr);
-
-
 
 
     if let Err(e) = axum::Server::bind(&addr)
