@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\libasync_task-b51b8ce2a0897f48.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\header.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\raw.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\runnable.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\state.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\task.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\utils.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\debug\deps\async_task-b51b8ce2a0897f48.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\header.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\raw.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\runnable.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\state.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\task.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\utils.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\header.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\raw.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\runnable.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\state.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\task.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\async-task-4.7.1\src\utils.rs:

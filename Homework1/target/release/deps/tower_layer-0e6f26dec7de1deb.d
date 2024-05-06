@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\release\deps\libtower_layer-0e6f26dec7de1deb.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\identity.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\layer_fn.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\stack.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\tuple.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\release\deps\libtower_layer-0e6f26dec7de1deb.rlib: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\identity.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\layer_fn.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\stack.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\tuple.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\release\deps\tower_layer-0e6f26dec7de1deb.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\identity.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\layer_fn.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\stack.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\tuple.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\identity.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\layer_fn.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\stack.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tower-layer-0.3.2\src\tuple.rs:

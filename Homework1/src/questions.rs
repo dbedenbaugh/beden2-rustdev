@@ -1,22 +1,17 @@
 
-use axum::{ routing::{get, post, put}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::Extension, response::Json, response::IntoResponse, extract::{path::Path,  FromRequest}};
-use tokio::{net::TcpListener, sync::Mutex};
-use std::{net::SocketAddr, sync::Arc};
+//use axum::{ routing::{get, post, put}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::Extension, response::Json, response::IntoResponse, extract::{path::Path,  FromRequest}};
+//use axum::{ routing::{get, post, put}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::Extension, response::Json, response::IntoResponse, extract::{path::Path,  FromRequest}};
 
-
+use tokio::{ sync::Mutex};
+//use std::{net::SocketAddr, sync::Arc};
 use std::io::{Error, ErrorKind};
 use std::str::FromStr;
-
 use serde::{Serialize, Deserialize};
-use serde_json::to_string;
-//use hyper::body::to_bytes;
-
-//use tower_http::{trace::TraceLayer};
-use tower_http::cors::{Any, CorsLayer, AllowMethods};
-use tower::ServiceBuilder;
+//use serde_json::to_string;
+//use tower_http::cors::{Any, CorsLayer, AllowMethods};
+//use tower::ServiceBuilder;
 use std::collections::HashMap;
-//CRUD, create, read, update, delete
-use core::mem::size_of;
+//use core::mem::size_of;
 
 
 
@@ -177,20 +172,39 @@ impl Store {
     )-> Result<String, String> {
 
         let mut answers = self.answers.lock().await;
-        if answers.insert(answer.id.clone(), answer).is_none(){
-            let json = serde_json::to_string(&*answers).expect("Failed to serialize questions");
-            //let json = serde_json::to_string(&self.questions).expect("Failed to serialize questions.");
-            std::fs::write("src/answers.json", json).expect("Failed to write to file.");
-            
-            Ok("Successful insert: answer".to_string())
-        }else {
-            Err("Failed to insert answer".to_string())
+        match answers.insert(answer.id.clone(), answer) {
+            Some(_) => {
+                // If Some, it means an old value was replaced.
+                let json = serde_json::to_string(&*answers).expect("Failed to serialize answers");
+                std::fs::write("src/answers.json", json).expect("Failed to write to file.");
+                Ok("Answer updated successfully.".to_string())
+            },
+            None => {
+                // If None, it means no value was previously associated with this key.
+                let json = serde_json::to_string(&*answers).expect("Failed to serialize answers");
+                std::fs::write("src/answers.json", json).expect("Failed to write to file.");
+                Ok("Answer inserted successfully.".to_string())
+            },
         }
-
         
 
     }
 
+
+
+
+impl FromStr for QuestionId {
+    type Err = std::io::Error;
+ 
+    fn from_str(id: &str) -> Result<Self, Self::Err> {
+        match id.is_empty() {
+            false => Ok(QuestionId(id.to_string())),
+            true => Err(
+              Error::new(ErrorKind::InvalidInput, "No id provided")
+            ),
+        }
+    }
+}
 
 
 
@@ -215,17 +229,3 @@ impl Store {
     }
 
 */
-
-impl FromStr for QuestionId {
-    type Err = std::io::Error;
- 
-    fn from_str(id: &str) -> Result<Self, Self::Err> {
-        match id.is_empty() {
-            false => Ok(QuestionId(id.to_string())),
-            true => Err(
-              Error::new(ErrorKind::InvalidInput, "No id provided")
-            ),
-        }
-    }
-}
-

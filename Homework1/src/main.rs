@@ -152,7 +152,7 @@ async fn delete_hr(
 
 async fn answer_hr(
     Extension(store): Extension<Arc<Mutex<Store>>>,
-    Path(answer_id): Path<AnswerId>,
+    //Path(answer_id): Path<AnswerId>,
     
 
 ) -> impl IntoResponse{
@@ -191,7 +191,7 @@ async fn main() {
     .route("/questions", get(get_hr))
     .route("/questions/:questionId", put(update_hr))
     .route("/questions/:questionId", delete(delete_hr))
-    .route("/answers", post(answer_hr))
+    .route("/answers", post(answer_hr).get(answer_hr))
 
     
     .layer(

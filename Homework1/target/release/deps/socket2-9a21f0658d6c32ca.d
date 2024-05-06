@@ -1,0 +1,11 @@
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\release\deps\libsocket2-9a21f0658d6c32ca.rmeta: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockaddr.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\socket.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockref.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sys\windows.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\release\deps\libsocket2-9a21f0658d6c32ca.rlib: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockaddr.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\socket.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockref.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sys\windows.rs
+
+C:\Users\dabed\Desktop\School\Rust\git\beden2-rustdev\Homework1\target\release\deps\socket2-9a21f0658d6c32ca.d: C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\lib.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockaddr.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\socket.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockref.rs C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sys\windows.rs
+
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\lib.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockaddr.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\socket.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sockref.rs:
+C:\Users\dabed\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.4.10\src\sys\windows.rs:
