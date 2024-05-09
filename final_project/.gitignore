@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But not these files...
+!/.gitignore
+!/Cargo.lock
+!/Cargo.toml
+!/Dockerfile
+
+# And not these directories...
+!/src/

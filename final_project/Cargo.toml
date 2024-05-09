@@ -1,0 +1,36 @@
+[package]
+name = "final_project"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = "0.11"
+axum = "0.5"
+serde_json = "1.0.116"
+axum-server = "0.5.0"
+tower = "0.4.13"
+tower-http = { version = "0.3", features = ["cors"] }
+dotenv = "0.15.0"
+uuid = { version = "1.8.0", features = ["serde", "v4"] }
+sqlx = { version = "0.6.0", features = ["runtime-async-std-native-tls", "postgres"] }
+chrono = { version = "0.4.37", features = ["serde"] }
+arc = "0.0.1"
+url = "2.5.0"
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_urlencoded = "0.7"
+hyper = "0.14"
+http = "1.1.0"
+log = "0.4"
+env_logger = "0.9"
+
+
+[[bin]]
+name = "final_project"
+path = "src/main.rs"
+
+[lib]
+name = "final_project_lib"
+path = "src/lib.rs"
