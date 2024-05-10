@@ -7,7 +7,7 @@
 mod questions;
 mod error;
 
-use axum::{ routing::{get, post, put, delete}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::Extension, response::Json, response::IntoResponse, extract::{path::Path,  FromRequest}};
+use axum::{ routing::{get, post, put, delete}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::{Form,Extension}, response::{Json,Html}, response::IntoResponse, extract::{path::Path,  FromRequest}};
 use tokio::{net::TcpListener, sync::Mutex};
 use std::{net::SocketAddr, sync::Arc};
 
@@ -34,7 +34,12 @@ use sqlx::postgres::PgPoolOptions;
 #[derive(Debug)]
 struct InvalidId;
 
-
+#[derive(Deserialize)]
+struct FormData {
+    title: String,
+    content: String,
+    tags: String,
+}
 
 
 
@@ -50,9 +55,8 @@ async fn create_db_pool() -> Result<sqlx::Pool<sqlx::Postgres>, sqlx::Error> {
 async fn add_question(pool: &sqlx::Pool<sqlx::Postgres>, question: Question) -> Result<(), sqlx::Error>{
     let tags = question.tags.unwrap_or_else(Vec::new);
     sqlx::query!(
-        "INSERT INTO questions (id, title, content, tags) 
-        VALUES ($1, $2, $3, $4)",
-        question.id,
+        "INSERT INTO questions (title, content, tags) 
+        VALUES ($1, $2, $3)",
         question.title,
         question.content,
         &tags
@@ -72,21 +76,6 @@ async fn get_questions(
     .fetch_all(&pool)
     .await?;
     Ok(result)
-}
-
-async fn update_table(
-    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
-    question: Question,
-) -> Result<(), sqlx::Error> {
-    sqlx::query!(
-        "UPDATE questions
-        SET title = $1, content = $2
-        WHERE id = $3",
-        question.title, question.content, question.id
-    )
-    .execute(&pool)
-    .await?;
-    Ok(())
 }
 
 async fn create_table_questions(
@@ -136,14 +125,30 @@ async fn add_answer(
 }
 
 async fn delete_question(
-    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
-    question_id: i32,
+    pool: &sqlx::Pool<sqlx::Postgres>,
+    question: Question,
 ) -> Result<(), sqlx::Error> {
     sqlx::query!(
         "DELETE FROM questions WHERE id = $1",
-        question_id
+        question.id
     )
-    .execute(&pool)
+    .execute(pool)
+    .await?;
+    Ok(())
+}
+
+
+async fn update_table(
+    pool: &sqlx::Pool<sqlx::Postgres>,
+    question: Question,
+) -> Result<(), sqlx::Error> {
+    sqlx::query!(
+        "UPDATE questions
+        SET title = $1, content = $2
+        WHERE id = $3",
+        question.title, question.content, question.id
+    )
+    .execute(pool)
     .await?;
     Ok(())
 }
@@ -174,6 +179,66 @@ async fn get_handler(
 
 }
 
+async fn form_handler() -> impl IntoResponse {
+    let html_contents = tokio::fs::read_to_string("src/post.html").await.unwrap();
+    Html(html_contents)
+}
+
+
+
+async fn post_handler(
+    Form(form_data): Form<FormData>,
+    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
+) -> impl IntoResponse {
+    let tags_vec: Vec<String> = form_data.tags.split(',').map(|s| s.trim().to_string()).collect();
+    let new_question = Question {
+        id: 1,
+        title: form_data.title,
+        content: form_data.content,
+        tags: Some(tags_vec),
+    };
+    match add_question(&pool, new_question).await {
+        Ok(_) => Html("<h1>Question added successfully!</h1>"),
+        Err(_) => Html("<h1>Error adding question</h1>"),
+    }
+}
+
+
+async fn update_handler(
+    Form(form_data): Form<FormData>,
+    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
+) -> impl IntoResponse{
+    let tags_vec: Vec<String> = form_data.tags.split(',').map(|s| s.trim().to_string()).collect();
+    let new_question = Question {
+        id: 1,
+        title: form_data.title,
+        content: form_data.content,
+        tags: Some(tags_vec),
+    };
+    match update_table(&pool, new_question).await {
+        Ok(_) => Html("<h1>Question added successfully!</h1>"),
+        Err(_) => Html("<h1>Error adding question</h1>"),
+    }
+
+}
+
+async fn delete_handler(
+    Form(form_data): Form<FormData>,
+    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
+) -> impl IntoResponse{
+    let tags_vec: Vec<String> = form_data.tags.split(',').map(|s| s.trim().to_string()).collect();
+    let new_question = Question {
+        id: 1,
+        title: form_data.title,
+        content: form_data.content,
+        tags: Some(tags_vec),
+    };
+    match delete_question(&pool, new_question).await {
+        Ok(_) => Html("<h1>Question added successfully!</h1>"),
+        Err(_) => Html("<h1>Error adding question</h1>"),
+    }
+
+}
 
 #[tokio::main]
 async fn main() {
@@ -201,11 +266,11 @@ async fn main() {
 
     let app = Router::new()
 
-    //.route("/questionspost", get(post_hr).post(post_hr))
+    .route("/form", get(form_handler).post(form_handler).put(form_handler).delete(form_handler))
+    .route("/questions/submit", get(post_handler).post(post_handler))
     .route("/questions", get(get_handler))
-    //.route("/questions", get(get_hr))
-    //.route("/questions/:questionId", put(update_hr))
-    //.route("/questions/:questionId", delete(delete_hr))
+    .route("/questions/update", get(update_handler).put(update_handler))
+    .route("/questions/delete", get(delete_handler).delete(delete_handler))
     //.route("/answers", post(answer_hr).get(answer_hr))
 
     
