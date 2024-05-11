@@ -41,6 +41,12 @@ struct FormData {
     tags: String,
 }
 
+#[derive(Deserialize)]
+struct AnswerFormData{
+    content: String,
+    question_id: i32,
+}
+
 
 
 async fn create_db_pool() -> Result<sqlx::Pool<sqlx::Postgres>, sqlx::Error> {
@@ -111,7 +117,7 @@ async fn create_table_answers(
 }
 
 async fn add_answer(
-    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
+    pool: &sqlx::Pool<sqlx::Postgres>, 
     answer: Answer
 ) -> Result<(), sqlx::Error> {
     sqlx::query!(
@@ -119,7 +125,7 @@ async fn add_answer(
         VALUES ($1, $2, $3)",
         answer.id, answer.content, answer.question_id
     )
-    .execute(&pool)
+    .execute(pool)
     .await?;
     Ok(())
 }
@@ -240,6 +246,26 @@ async fn delete_handler(
 
 }
 
+async fn answer_form_handler() -> impl IntoResponse {
+    let html_contents = tokio::fs::read_to_string("src/answer_form.html").await.unwrap();
+    Html(html_contents)
+}
+
+async fn answer_handler(
+    Form(form_data): Form<AnswerFormData>,
+    Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
+) -> impl IntoResponse {
+    let new_answer = Answer {
+        id: 1,
+        content: form_data.content,
+        question_id: form_data.question_id,
+    };
+    match add_answer(&pool, new_answer).await {
+        Ok(_) => Html("<h1>Answer added successfully!</h1>"),
+        Err(_) => Html("<h1>Error adding answer</h1>"),
+    }
+}
+
 #[tokio::main]
 async fn main() {
 
@@ -271,7 +297,8 @@ async fn main() {
     .route("/questions", get(get_handler))
     .route("/questions/update", get(update_handler).put(update_handler))
     .route("/questions/delete", get(delete_handler).delete(delete_handler))
-    //.route("/answers", post(answer_hr).get(answer_hr))
+    .route("/answers", post(answer_form_handler).get(answer_form_handler))
+    .route("/answers/submit", get(answer_handler).post(answer_handler))
 
     
     .layer(
