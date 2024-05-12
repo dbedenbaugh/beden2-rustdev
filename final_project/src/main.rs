@@ -27,7 +27,7 @@ use std::collections::HashMap;
 use core::mem::size_of;
 
 use crate::questions::{Question, QuestionId, Store, Answer, AnswerId};
-use sqlx::postgres::PgPoolOptions;
+use sqlx::{FromRow,postgres::PgPoolOptions};
 
 
 
@@ -47,7 +47,13 @@ struct AnswerFormData{
     question_id: i32,
 }
 
-
+#[derive(Deserialize, Serialize, FromRow)]
+struct QuestionAnswer {
+    question_id: Option<i32>,
+    question_content: Option<String>,
+    title: Option<String>,
+    answer_content: Option<String>,
+}
 
 async fn create_db_pool() -> Result<sqlx::Pool<sqlx::Postgres>, sqlx::Error> {
     let database_url = "postgres://postgres:Password@localhost/final";
@@ -74,13 +80,28 @@ async fn add_question(pool: &sqlx::Pool<sqlx::Postgres>, question: Question) -> 
 
 async fn get_questions(
     Extension(pool): Extension<sqlx::Pool<sqlx::Postgres>>,
-) -> Result <Vec<Question>, sqlx::Error> {
+) -> Result <Vec<QuestionAnswer>, sqlx::Error> {
     let result = sqlx::query_as!(
-        Question,
-        "SELECT * FROM questions"
+        QuestionAnswer,
+        "
+        SELECT 
+            questions.id AS question_id, 
+            questions.content AS question_content,
+            questions.title, 
+            answers.content AS answer_content
+        FROM 
+            questions 
+        FULL JOIN 
+            answers 
+        ON 
+            questions.id = answers.question_id
+        "
+        //Question,
+        //"SELECT * FROM questions"
     )
     .fetch_all(&pool)
     .await?;
+
     Ok(result)
 }
 
@@ -182,7 +203,6 @@ async fn get_handler(
                 .unwrap()
         }
     }
-
 }
 
 async fn form_handler() -> impl IntoResponse {
