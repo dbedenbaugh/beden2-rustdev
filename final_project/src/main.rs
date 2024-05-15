@@ -267,7 +267,7 @@ async fn delete_handler(
 }
 
 async fn answer_form_handler() -> impl IntoResponse {
-    let html_contents = tokio::fs::read_to_string("src/answer_form.html").await.unwrap();
+    let html_contents = tokio::fs::read_to_string("src/answers_form.html").await.unwrap();
     Html(html_contents)
 }
 
@@ -317,7 +317,7 @@ async fn main() {
     .route("/questions", get(get_handler))
     .route("/questions/update", get(update_handler).put(update_handler))
     .route("/questions/delete", get(delete_handler).delete(delete_handler))
-    .route("/answers", post(answer_form_handler).get(answer_form_handler))
+    .route("/answers", get(answer_form_handler).post(answer_form_handler))
     .route("/answers/submit", get(answer_handler).post(answer_handler))
 
     
@@ -331,7 +331,7 @@ async fn main() {
 
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    println!("Server listening on http://{}", addr);
+    println!("Server listening on http://{}/form", addr);
 
     axum::Server::bind(&addr)
     .serve(app.into_make_service())

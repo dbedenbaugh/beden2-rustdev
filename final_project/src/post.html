@@ -9,9 +9,11 @@
     <label for="id">ID (Delete/Update):</label>
     <input type="text" id="id" name="id"><br><br>
     <input type="submit" value="Submit">
-    <button type = "button" onclick="submitRoute('/questions', 'GET')">View Question</button>
+    <button type = "button" onclick="submitRoute('/questions', 'GET')">View Questions</button>
     <button type = "button" onclick="submitRoute('/questions/update', 'GET')">Update Entry</button>
     <button type = "button" onclick="submitRoute('/questions/delete', 'GET')">Delete Question</button> 
+    <button type = "button" onclick="submitRoute('/answers', 'GET')">Answer Question</button> 
+
 </form>
 
 <script>
