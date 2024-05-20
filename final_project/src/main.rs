@@ -5,15 +5,15 @@
     clippy::all,
 )]
 mod questions;
-mod error;
+//mod error;
 
-use axum::{ routing::{get, post, put, delete}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::{Form,Extension}, response::{Json,Html}, response::IntoResponse, extract::{path::Path,  FromRequest}};
+use axum::{ routing::{get, post, put, delete}, body::{Body,Bytes},Router,http::{Request,Method, Response, StatusCode}, extract::{Form,Extension, rejection::ExtensionRejection}, response::{Json,Html}, response::IntoResponse, extract::{path::Path,  FromRequest}};
 use tokio::{net::TcpListener, sync::Mutex};
 use std::{net::SocketAddr, sync::Arc};
 
 
-use std::io::{Error, ErrorKind};
-use std::str::FromStr;
+//use std::io::{Error, ErrorKind};
+//use std::str::FromStr;
 
 use serde::{Serialize, Deserialize};
 use serde_json::to_string;
@@ -28,7 +28,106 @@ use core::mem::size_of;
 
 use crate::questions::{Question, QuestionId, Store, Answer, AnswerId};
 use sqlx::{FromRow,postgres::PgPoolOptions};
-use reqwest::Client;
+use reqwest::{Client, Error as ReqwestError};
+use reqwest_middleware::Error as MiddlewareReqwestError;
+use tracing::{event, Level, instrument};
+use thiserror::Error;
+
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct APIResponse {
+    message: String
+}
+
+#[derive(Debug, Error)]
+pub enum Error {
+    #[error("Cannot parse parameter: {0}")]
+    ParseError(std::num::ParseIntError),
+    #[error("Missing parameter")]
+    MissingParameters,
+    #[error("Cannot update, invalid data.")]
+    DatabaseQueryError,
+    #[error("External API error: {0}")]
+    ReqwestAPIError(ReqwestError),
+    #[error("External Middleware API error: {0}")]
+    MiddlewareReqwestAPIError(MiddlewareReqwestError),
+    #[error("External Client error: {0}")]
+    ClientError(APILayerError),
+    #[error("External Server error: {0}")]
+    ServerError(APILayerError),
+}
+
+async fn transform_error(
+    res: reqwest::Response
+) -> APILayerError{
+    APILayerError{
+        status: res.status().as_u16(),
+        message: res.json::<APIResponse>().await.unwrap().message,
+    }
+}
+
+
+#[derive(Debug, Clone)]
+pub struct APILayerError {
+    pub status: u16,
+    pub message: String,
+}
+
+impl std::fmt::Display for APILayerError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "Status: {}, Message: {}", self.status, self.message)
+    }
+}
+
+//impl Reject for Error {}
+//impl Reject for APILayerError {}
+
+impl IntoResponse for Error {
+    fn into_response(self) -> axum::response::Response {
+        match self {
+            Error::ParseError(_) => (
+                StatusCode::BAD_REQUEST,
+                Json(APIResponse { message: self.to_string() }),
+            ).into_response(),
+            Error::MissingParameters => (
+                StatusCode::BAD_REQUEST,
+                Json(APIResponse { message: self.to_string() }),
+            ).into_response(),
+            Error::DatabaseQueryError => (
+                StatusCode::UNPROCESSABLE_ENTITY,
+                Json(APIResponse { message: self.to_string() }),
+            ).into_response(),
+            Error::ReqwestAPIError(_) => (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(APIResponse { message: "Internal Server Error".into() }),
+            ).into_response(),
+            Error::MiddlewareReqwestAPIError(_) => (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(APIResponse { message: "Internal Server Error".into() }),
+            ).into_response(),
+            Error::ClientError(err) => (
+                StatusCode::BAD_REQUEST,
+                Json(APIResponse { message: err.to_string() }),
+            ).into_response(),
+            Error::ServerError(err) => (
+                StatusCode::INTERNAL_SERVER_ERROR,
+                Json(APIResponse { message: err.to_string() }),
+            ).into_response(),
+        }
+    }
+}
+
+
+#[instrument]
+pub async fn return_error(err: Error) -> Result<impl IntoResponse, Error> {
+    event!(Level::ERROR, "{}", err);
+    Ok(err.into_response())
+}
+
+
+
+
+
 
 #[derive(Deserialize, Debug)]
 struct FilterResponse{
