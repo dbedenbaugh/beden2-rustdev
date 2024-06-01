@@ -7,3 +7,5 @@ The final_project folder contains my most up to date CRUD api. It's memory persi
 past program termination and i stored in a postgres server. A proper custom error handler
 is currently being implemented and the next step is a more proper frontend. 
 
+The API for censoring bad words has been implemented and should censor 
+bad words when adding question content to the database.  
