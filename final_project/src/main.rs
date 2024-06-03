@@ -1,9 +1,11 @@
-//minimal CRUD rest API using axum
-// programmer: Devon Bedenbaugh
-// help credits go to chatgpt, rustdocs, axum docs, bastian gruber rust textbook, 
 #![warn(
     clippy::all,
 )]
+
+/// minimal CRUD question database using axum
+/// programmer: Devon Bedenbaugh
+/// help credits go to chatgpt, rustdocs, axum docs, bastian gruber rust textbook, 
+
 mod questions;
 //mod error;
 
@@ -34,6 +36,7 @@ use tracing::{event, Level, instrument};
 use thiserror::Error;
 
 
+///Error handling 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct APIResponse {
     message: String
@@ -82,6 +85,8 @@ impl std::fmt::Display for APILayerError {
 //impl Reject for Error {}
 //impl Reject for APILayerError {}
 
+
+
 impl IntoResponse for Error {
     fn into_response(self) -> axum::response::Response {
         match self {
@@ -127,7 +132,7 @@ pub async fn return_error(err: Error) -> Result<impl IntoResponse, Error> {
 
 
 
-
+/// Module for handling bad-words api
 
 #[derive(Deserialize, Debug)]
 struct FilterResponse{
@@ -158,6 +163,8 @@ async fn filter_bad_words(text: &str) -> Result<String, Box<dyn std::error::Erro
     Ok(inner_content.text)
 }
 
+///Structs for extracting form data
+
 #[derive(Debug)]
 struct InvalidId;
 
@@ -174,6 +181,8 @@ pub struct AnswerFormData{
     question_id: i32,
 }
 
+
+///Handlers that redirect user to the front-end
 
 async fn get_handler(
     Extension(store): Extension<Store>,
@@ -287,6 +296,10 @@ async fn answer_handler(
     }
 }
 
+
+///Main consists of establishing environment variables
+///to access the database and API's that require unique
+///keys.
 #[tokio::main]
 async fn main() {
 

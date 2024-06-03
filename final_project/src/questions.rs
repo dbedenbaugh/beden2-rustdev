@@ -81,7 +81,7 @@ pub struct QuestionAnswer {
 
 ///Structure for loading and saving database.
 /// #handles basic CRUD components
-/// 
+/// #handles the relationship between answers and questions
 #[derive(Clone)]
 pub struct Store{
     pub pool: sqlx::Pool<sqlx::Postgres>,
