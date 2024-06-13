@@ -13,7 +13,13 @@ is currently being implemented and the next step is a more proper frontend.
 The API for censoring bad words has been implemented and should censor 
 bad words when adding question content to the database.  
 
-
+### IMPORTANT
+# The current implementation of final_project is having build issues last minute
+To run this program, you will want to use 
+   ```sh
+   trunk serve
+   ```
+to run the frontend in addition to the instructions below. 
 ## Installation
 
 1. **Install PostgreSQL Server:**
