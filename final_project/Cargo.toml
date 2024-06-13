@@ -28,11 +28,18 @@ env_logger = "0.9"
 reqwest-middleware = "0.1.1"
 tracing = { version = "0.1", features = ["log"] }
 thiserror = "1.0"
+#yew = { version = "0.19.3", features = ["csr"] }
+yew = "0.19.3"
+wasm-bindgen = "0.2"
+reqwasm = "0.5"
+wasm-bindgen-futures = "0.4.42"
 
 [[bin]]
-name = "final_project"
-path = "src/main.rs"
+name = "final_project_backend"
+path = "src/backend/main.rs"
 
 [lib]
-name = "final_project_lib"
-path = "src/lib.rs"
+name = "final_project_frontend"
+path = "src/frontend/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
